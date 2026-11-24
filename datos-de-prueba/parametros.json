@@ -1,0 +1,309 @@
+{
+  "advertencia": "DATOS INVENTADOS para pruebas del sistema. No usar como resultados de la investigación.",
+  "semilla": 2026,
+  "desde": "2025-10-01",
+  "hasta": "2026-11-03",
+  "contrasena_cuentas": "Prueba2026",
+  "dias_sin_registro_aprox": 0.015,
+  "comercios": [
+    {
+      "id": "prueba-moda-sinu",
+      "nombre": "Moda Sinú (PRUEBA)",
+      "categoria": "Ropa y calzado",
+      "direccion": "Calle 31 #3-40, Centro, Montería",
+      "empleados": 4,
+      "antiguedad": 6,
+      "base": 22,
+      "dia_semana": [
+        0.85,
+        0.85,
+        0.9,
+        0.95,
+        1.15,
+        1.6,
+        0.7
+      ],
+      "quincena": 0.3,
+      "previa_quincena": 0.1,
+      "post_quincena": 0.15,
+      "fin_mes": 0.1,
+      "festivo": -0.15,
+      "meses": {
+        "12": 0.45,
+        "1": -0.15,
+        "6": 0.1,
+        "7": 0.1
+      },
+      "eventos": {
+        "Día de la Madre": 0.4,
+        "Día del Padre": 0.25,
+        "Día del Amor y la Amistad": 0.35
+      },
+      "lluvia_por_mm": -0.015,
+      "lluvia_tope": -0.35,
+      "calor_mayor_34": -0.05,
+      "tendencia_anual": 0.05,
+      "cerrado": [
+        "01-01",
+        "12-25"
+      ],
+      "descripcion": "Tienda de ropa: muy sensible a sábados, quincenas, diciembre y fechas de regalo; la lluvia la afecta."
+    },
+    {
+      "id": "prueba-drogueria-esperanza",
+      "nombre": "Droguería La Esperanza (PRUEBA)",
+      "categoria": "Farmacia",
+      "direccion": "Carrera 4 #29-12, Centro, Montería",
+      "empleados": 5,
+      "antiguedad": 12,
+      "base": 30,
+      "dia_semana": [
+        1.05,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.05,
+        0.8
+      ],
+      "quincena": 0.08,
+      "previa_quincena": 0.0,
+      "post_quincena": 0.03,
+      "fin_mes": 0.03,
+      "festivo": -0.05,
+      "meses": {
+        "4": 0.12,
+        "5": 0.12,
+        "10": 0.1,
+        "11": 0.1,
+        "12": 0.08
+      },
+      "eventos": {},
+      "lluvia_por_mm": -0.005,
+      "lluvia_tope": -0.1,
+      "calor_mayor_34": 0.0,
+      "tendencia_anual": 0.02,
+      "cerrado": [],
+      "descripcion": "Droguería: flujo estable; sube en temporadas de lluvias (enfermedades respiratorias), poco efecto de quincena."
+    },
+    {
+      "id": "prueba-asadero-fogon",
+      "nombre": "Asadero El Fogón (PRUEBA)",
+      "categoria": "Restaurante",
+      "direccion": "Calle 28 #5-15, Centro, Montería",
+      "empleados": 7,
+      "antiguedad": 9,
+      "base": 45,
+      "dia_semana": [
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.2,
+        1.35,
+        1.25
+      ],
+      "quincena": 0.15,
+      "previa_quincena": 0.05,
+      "post_quincena": 0.1,
+      "fin_mes": 0.05,
+      "festivo": 0.2,
+      "meses": {
+        "12": 0.2,
+        "1": 0.05,
+        "6": 0.05,
+        "7": 0.05
+      },
+      "eventos": {
+        "Día de la Madre": 0.5,
+        "Día del Padre": 0.3,
+        "Día del Amor y la Amistad": 0.25
+      },
+      "lluvia_por_mm": -0.02,
+      "lluvia_tope": -0.4,
+      "calor_mayor_34": -0.08,
+      "tendencia_anual": 0.0,
+      "cerrado": [
+        "01-01"
+      ],
+      "descripcion": "Restaurante: fines de semana y festivos altos; la lluvia fuerte lo afecta mucho."
+    },
+    {
+      "id": "prueba-ferreteria-tornillo",
+      "nombre": "Ferretería El Tornillo (PRUEBA)",
+      "categoria": "Ferretería",
+      "direccion": "Carrera 7 #27-30, Centro, Montería",
+      "empleados": 3,
+      "antiguedad": 15,
+      "base": 18,
+      "dia_semana": [
+        1.05,
+        1.0,
+        1.0,
+        1.0,
+        1.05,
+        1.3,
+        0.3
+      ],
+      "quincena": 0.1,
+      "previa_quincena": 0.0,
+      "post_quincena": 0.05,
+      "fin_mes": 0.05,
+      "festivo": -0.6,
+      "meses": {
+        "4": 0.1,
+        "5": 0.1,
+        "9": 0.08,
+        "10": 0.1,
+        "11": 0.08,
+        "12": -0.1,
+        "1": 0.05
+      },
+      "eventos": {},
+      "lluvia_por_mm": -0.008,
+      "lluvia_tope": -0.2,
+      "calor_mayor_34": 0.0,
+      "tendencia_anual": 0.03,
+      "cerrado": [
+        "01-01",
+        "12-25"
+      ],
+      "descripcion": "Ferretería: casi cerrada domingos y festivos; sube en temporada de lluvias (reparaciones)."
+    },
+    {
+      "id": "prueba-papeleria-escolar",
+      "nombre": "Papelería Escolar (PRUEBA)",
+      "categoria": "Papelería",
+      "direccion": "Calle 30 #6-10, Centro, Montería",
+      "empleados": 2,
+      "antiguedad": 8,
+      "base": 15,
+      "dia_semana": [
+        1.05,
+        1.05,
+        1.05,
+        1.05,
+        1.0,
+        0.9,
+        0.4
+      ],
+      "quincena": 0.1,
+      "previa_quincena": 0.0,
+      "post_quincena": 0.05,
+      "fin_mes": 0.05,
+      "festivo": -0.4,
+      "meses": {
+        "12": -0.4,
+        "1": 0.6,
+        "2": 0.3,
+        "6": -0.15,
+        "7": 0.2
+      },
+      "eventos": {},
+      "lluvia_por_mm": -0.008,
+      "lluvia_tope": -0.2,
+      "calor_mayor_34": 0.0,
+      "tendencia_anual": 0.0,
+      "cerrado": [
+        "01-01",
+        "12-25"
+      ],
+      "descripcion": "Papelería: dominada por el calendario escolar (pico enero–febrero y julio, baja en diciembre)."
+    },
+    {
+      "id": "prueba-variedades-centro",
+      "nombre": "Variedades El Centro (PRUEBA)",
+      "categoria": "Variedades",
+      "direccion": "Carrera 3 #30-55, Centro, Montería",
+      "empleados": 3,
+      "antiguedad": 10,
+      "base": 25,
+      "dia_semana": [
+        0.9,
+        0.9,
+        0.95,
+        0.95,
+        1.1,
+        1.55,
+        0.8
+      ],
+      "quincena": 0.25,
+      "previa_quincena": 0.08,
+      "post_quincena": 0.12,
+      "fin_mes": 0.08,
+      "festivo": -0.1,
+      "meses": {
+        "12": 0.6,
+        "1": -0.1,
+        "11": 0.1
+      },
+      "eventos": {
+        "Día de la Madre": 0.2,
+        "Día del Amor y la Amistad": 0.2
+      },
+      "lluvia_por_mm": -0.01,
+      "lluvia_tope": -0.25,
+      "calor_mayor_34": -0.03,
+      "tendencia_anual": 0.04,
+      "cerrado": [
+        "01-01",
+        "12-25"
+      ],
+      "descripcion": "Variedades: patrón parecido al comercio piloto real, con fuerte temporada navideña."
+    }
+  ],
+  "resumen": [
+    {
+      "id": "prueba-moda-sinu",
+      "dias": 387,
+      "promedio": 22.5,
+      "minimo": 5,
+      "maximo": 50
+    },
+    {
+      "id": "prueba-drogueria-esperanza",
+      "dias": 395,
+      "promedio": 30.3,
+      "minimo": 12,
+      "maximo": 51
+    },
+    {
+      "id": "prueba-asadero-fogon",
+      "dias": 395,
+      "promedio": 43.4,
+      "minimo": 17,
+      "maximo": 84
+    },
+    {
+      "id": "prueba-ferreteria-tornillo",
+      "dias": 392,
+      "promedio": 17.4,
+      "minimo": 1,
+      "maximo": 37
+    },
+    {
+      "id": "prueba-papeleria-escolar",
+      "dias": 396,
+      "promedio": 13.5,
+      "minimo": 1,
+      "maximo": 32
+    },
+    {
+      "id": "prueba-variedades-centro",
+      "dias": 388,
+      "promedio": 27.0,
+      "minimo": 10,
+      "maximo": 78
+    }
+  ],
+  "extensiones": [
+    {
+      "desde": "2026-10-20",
+      "hasta": "2026-11-03",
+      "semilla": [
+        2026,
+        739908
+      ]
+    }
+  ]
+}

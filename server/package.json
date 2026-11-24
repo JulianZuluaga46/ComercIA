@@ -1,0 +1,50 @@
+{
+  "name": "comercia-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "postinstall": "prisma generate",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:reset": "prisma db push --force-reset --skip-generate && tsx prisma/seed.ts",
+    "ml:setup": "node scripts/ml-setup.mjs",
+    "typecheck": "tsc --noEmit",
+    "test-data": "tsx scripts/test-data.ts load",
+    "test-data:extend": "tsx scripts/test-data.ts extend",
+    "test-data:remove": "tsx scripts/test-data.ts remove",
+    "test": "tsx --test src/core.test.ts && node scripts/ml-test.mjs",
+    "test:load": "tsx scripts/load-test.ts",
+    "test:acceptance": "tsx scripts/acceptance.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.0",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^10.1.7",
+    "pdfkit": "^0.20.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.0.0",
+    "@types/nodemailer": "^8.0.2",
+    "@types/pdfkit": "^0.17.6",
+    "prisma": "^6.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

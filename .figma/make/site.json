@@ -1,0 +1,15 @@
+{
+  "title": "ComercIA",
+  "description": "ComercIA predice el flujo de clientes de los comercios del centro de Montería con machine learning, clima y calendario. Proyecto de investigación de la Universidad de Córdoba.",
+  "language": "es",
+  "icons": {
+    "icon": "/favicon.svg"
+  },
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

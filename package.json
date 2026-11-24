@@ -1,0 +1,39 @@
+{
+  "name": "comercia",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:real": "node scripts/dev.mjs --real",
+    "dev:api": "npm run dev --prefix server",
+    "dev:full": "concurrently -n web,api -c blue,green \"npm run dev\" \"npm run dev:api\"",
+    "setup": "npm install && cd server && npm install && npm run ml:setup",
+    "db:setup": "npm run db:push --prefix server && npm run db:seed --prefix server",
+    "db:reset": "npm run db:reset --prefix server",
+    "test-data": "npm run test-data --prefix server",
+    "test-data:remove": "npm run test-data:remove --prefix server",
+    "build": "vite build",
+    "build:api": "npm run build --prefix server",
+    "preview": "vite preview",
+    "format": "oxfmt"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^8.4.0",
+    "recharts": "^3.10.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.0.0",
+    "oxfmt": "^0.2.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0",
+    "vite": "^8.0.5"
+  }
+}

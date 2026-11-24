@@ -1,0 +1,213 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  comerciante
+  admin
+  analista
+}
+
+enum StoreStatus {
+  Activo
+  Pendiente
+  Inactivo
+}
+
+enum UserStatus {
+  Activo
+  Pendiente
+  Inactivo
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  passwordHash String
+  name         String
+  phone        String     @default("")
+  role         Role
+  status       UserStatus @default(Activo)
+  storeId      String?
+  store        Store?     @relation(fields: [storeId], references: [id])
+  lastLoginAt  DateTime?
+  failedLogins Int        @default(0)
+  lockedUntil  DateTime?
+  /// true tras un restablecimiento por el administrador: debe cambiar la contraseña al entrar
+  mustChangePassword Boolean @default(false)
+  createdAt    DateTime   @default(now())
+  notifications Notification[]
+  loginCodes   LoginCode[]
+  feedback     Feedback?
+  alertSettings AlertSettings?
+  settings     UserSettings?
+  reports      Report[]
+}
+
+model Store {
+  id                 String      @id
+  name               String
+  category           String
+  address            String
+  lat                Float
+  lng                Float
+  mapX               Float
+  mapY               Float
+  employees          Int
+  yearsInBusiness    Int
+  avgDailyClients    Int
+  sensitivityFactors String
+  description        String
+  dataRecords        Int         @default(0)
+  status             StoreStatus @default(Activo)
+  /// Comercio de prueba con datos inventados (datos-de-prueba/). Nunca mezclar con resultados reales.
+  isTest             Boolean     @default(false)
+  users              User[]
+  dailyRecords       DailyRecord[]
+  alertSettings      AlertSettings[]
+  createdAt          DateTime    @default(now())
+}
+
+model DailyRecord {
+  id            String   @id @default(cuid())
+  storeId       String
+  store         Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  date          DateTime
+  clients       Int
+  /// true si el conteo de clientes fue estimado y no observado (ver nota de transparencia del registro piloto)
+  estimated     Boolean  @default(false)
+  promotion     Boolean?
+  observations  String?
+  /// predicción fuera de muestra (walk-forward) o hecha antes de conocer el valor real
+  predicted     Float?
+  predictedBy   String?
+  createdAt     DateTime @default(now())
+
+  @@unique([storeId, date])
+  @@index([storeId, date])
+}
+
+/// Clima diario de Montería (Open-Meteo). Es un dato de ciudad, no de comercio.
+model WeatherDaily {
+  date        String   @id // YYYY-MM-DD
+  tmax        Float
+  tmin        Float
+  precip      Float
+  humidity    Float
+  weatherCode Int
+  source      String // archive | forecast
+  updatedAt   DateTime @updatedAt
+}
+
+/// Código de un solo uso enviado por correo para iniciar sesión sin contraseña.
+model LoginCode {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  codeHash  String
+  expiresAt DateTime
+  attempts  Int       @default(0)
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  /// Después de esta fecha deja de mostrarse (p. ej. alerta de un día que ya pasó)
+  expiresAt DateTime?
+  createdAt DateTime @default(now())
+}
+
+/// Evaluación del sistema por sus usuarios (Objetivo 4: facilidad de uso y utilidad práctica; RNF-01).
+model Feedback {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// Escala 1 (nada) a 5 (mucho)
+  easeOfUse  Int
+  usefulness Int
+  accuracy   Int
+  /// Pudo completar las tareas principales sin ayuda
+  noHelp     Boolean
+  comment    String?
+  updatedAt  DateTime @updatedAt
+}
+
+model AlertSettings {
+  id         String  @id @default(cuid())
+  userId     String? @unique
+  user       User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  storeId    String? @unique
+  store      Store?  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  bajo       Int     @default(15)
+  normalMin  Int     @default(15)
+  normalMax  Int     @default(30)
+  alto       Int     @default(31)
+  critico    Int     @default(40)
+}
+
+model UserSettings {
+  id            String  @id @default(cuid())
+  userId        String  @unique
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  emailNotif    Boolean @default(true)
+  smsNotif      Boolean @default(false)
+  pushNotif     Boolean @default(true)
+  weeklyReport  Boolean @default(true)
+  monthlyReport Boolean @default(true)
+}
+
+model Report {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  storeId     String?
+  name        String
+  tipo        String
+  formato     String
+  fechaInicio String
+  fechaFin    String
+  content     String
+  createdAt   DateTime @default(now())
+}
+
+model ModelRun {
+  id               String   @id @default(cuid())
+  version          String   @unique
+  algorithm        String
+  algorithmKey     String
+  mae              Float
+  rmse             Float
+  r2               Float
+  mape             Float
+  /// métricas del método empírico de referencia (promedio por día de la semana)
+  baselineMae      Float
+  baselineRmse     Float
+  baselineMape     Float
+  /// registros evaluados fuera de muestra
+  evaluated        Int
+  records          Int
+  excludeEstimated Boolean  @default(false)
+  /// true si se entrenó también con comercios de prueba (datos inventados)
+  includesTestData Boolean  @default(false)
+  importances      String   @default("[]")
+  /// predicciones de validación walk-forward [{storeId,date,predicted}]
+  backtest         String   @default("[]")
+  trainedThrough   String
+  durationMs       Int
+  active           Boolean  @default(false)
+  createdAt        DateTime @default(now())
+}

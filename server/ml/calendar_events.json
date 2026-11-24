@@ -1,0 +1,7 @@
+{
+  "_comentario": "Eventos de calendario que no se pueden calcular automáticamente. Los festivos nacionales los calcula la librería 'holidays'; el Día de la Madre, el Día del Padre y el Día del Amor y la Amistad (con sus 2 días previos) se calculan en features.py. Agregue aquí los recesos escolares y eventos locales verificados (formato YYYY-MM-DD, rangos inclusivos).",
+  "school_breaks": [
+    { "from": "2026-10-05", "to": "2026-10-11", "name": "Semana de receso escolar (registro piloto, por verificar)" }
+  ],
+  "commercial_events": []
+}

@@ -1,0 +1,45 @@
+node_modules/
+dist/
+build/
+.cache/
+.env*
+.vite/
+vite.config.*.timestamp-*
+*.tsbuildinfo
+*-debug.log*
+logs/
+*.log
+.claude-replay.*
+.tmp-*
+/.figma/design-context/
+
+# Platform-managed agentplat state, not project source. In the
+# client-initiated single-repo workspace layout (make's `Path: "."` spec) the
+# repo root IS the workspace root, so these land inside this repo rather than
+# beside it.
+/.plugins/
+/.opencode-skills/
+server/prisma/*.db
+server/prisma/*.db-journal
+server/dist/
+server/backups/
+*.db
+server/ml/.venv/
+server/ml/__pycache__/
+server/ml/models/
+
+# Datos reales y copias: nunca se suben (ver AGENTS.md)
+server/.env
+*.db-journal
+*.sqlite
+server/backups/
+*.joblib
+__pycache__/
+.venv/
+# Copia de demostración: contiene una copia de la base real
+exposicion/
+datos-hogaria/
+# El proyecto usa npm (package-lock.json); este archivo quedó de la plantilla
+pnpm-lock.yaml
+# Prompt original de la plantilla de Figma Make (no lo usa el sistema)
+src/imports/
